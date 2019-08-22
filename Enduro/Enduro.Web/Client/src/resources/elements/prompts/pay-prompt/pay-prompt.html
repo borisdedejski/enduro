@@ -1,0 +1,27 @@
+<template class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog">
+  <require from="../prompts.scss"></require>
+
+  <div class="modal-dialog" role="document" style="width: 30rem;" submit.delegate="confirmPay()">
+    <form class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Confirm your payment</h4>
+        <button click.trigger="controller.cancel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div submit.trigger="addUser()" submit.trigger="controller.ok()" class="modal-body mx-3 mb-4">
+        <p>
+          Are you sure you want to rent this car.
+          After clicking submit you will pay and wait for call from the car owner
+          you are ready to go when
+        </p>
+      </div>
+
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="submit" class="btn btn-secondary" click.trigger="controller.cancel()">Cancel</button>
+        <button type="submit" class="btn btn-success">Pay</button>
+      </div>
+    </form>
+  </div>
+
+</template>

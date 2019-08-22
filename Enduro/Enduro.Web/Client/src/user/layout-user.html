@@ -1,0 +1,35 @@
+<template>
+  <require from="./user.scss"></require>
+  <require from="../resources/elements/layout/navbar"></require>
+  <navbar class="fixed-top"></navbar>
+  <!-- <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Enduro</a>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="#">Sign out</a>
+      </li>
+    </ul>
+  </nav> -->
+  <div class="container-fluid pt-5">
+    <div class="row">
+        <div class="sidebar-toggler bg-light" click.trigger="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar"style="margin-top:50px;">
+            <div class="sidebar-sticky" >
+                <ul class="nav flex-column">
+                    <li repeat.for="route of router.navigation" class="nav-item">
+                        <a href.bind="route.href" class="nav-link  ${route.isActive === true ? 'active': ''}">
+                            <i class="${route.config.icon}"></i>
+                            ${route.title}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="col-md-10">
+            <slot></slot>
+        </div>
+    </div>
+</div>
+</template>

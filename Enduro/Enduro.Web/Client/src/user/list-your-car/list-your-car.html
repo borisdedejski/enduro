@@ -1,0 +1,53 @@
+<template>
+  <require from="./list-your-car.scss"></require>
+  <require from="../../resources/elements/datepicker/datepicker"></require>
+
+  <div class="container" style="margin-top:20px; margin-bottom:700px;">
+    <div class="row">
+
+      <div class="col-2">
+      </div>
+
+      <div class="col-6">
+        <h3 class="heading" style="font-size:40px !important;">List your car </h3>
+        <hr>
+        <!-- <button click.delegate="try()">try</button> -->
+        <div class="row">
+          <div class="col-8">
+            <label class="heading">Full Name</label>
+            <div class="input-group">
+              <input type="text" class="form-control" value="${fullName}" readonly/> 
+            </div>
+          </div>
+        </div>
+        <br>
+        <label class="heading">In which country is your car located ?</label>
+        <div class="input-group">
+          <select class="form-control" value.bind="selectedCountry">
+            <option model.bind="null">Choose...</option>
+            <option repeat.for="country of carLocationCountry" model.bind="country.name">
+              ${country.name}
+            </option>
+          </select>
+        </div>
+        <br>
+        <label class="heading">Enter address for pickup</label>
+        <input class="form-control" type="text" placeholder="Address for pickup" value.bind="addressForPickup" />
+        <br>
+        <label class="heading">Your driver license number</label>
+        <input class="form-control" type="text" placeholder="ex. A12312" style="width:300px;" value.bind="driverLicenseNo"/>
+        <br>
+        <label class="heading">Your Mobile phone</label>
+        <input class="form-control" type="text" placeholder="ex. +38912412" style="width:300px;" value.bind="mobileNumber"/>
+        <br>
+        <br>
+        <button class="btn btn-primary form-control" click.delegate="navigateToStep2()">Next <i class="fas fa-angle-right"></i></button>
+      </div>
+
+      <div class="col-4">
+        <p>Step 1 of 3 </p>
+      </div>
+
+    </div>
+  </div>
+</template>

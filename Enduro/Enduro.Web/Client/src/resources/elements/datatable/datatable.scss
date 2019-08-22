@@ -1,0 +1,40 @@
+@import '../../../shared/styles/generic-styles';
+
+  .page-item {
+    &.active {
+      .page-link {
+        background: $primary-color;
+        border-color: $primary-color;
+      }
+    }
+    &:hover {
+      .page-link {
+        color: $primary-color;
+      }
+    }
+    a {
+      color: $primary-color;
+    }
+  }
+
+  td.highlight {
+    background-color: #eafaf5 !important;
+    cursor: pointer;
+  }
+
+  tr {
+    font-family: 'Inconsolata', monospace;
+    font-size: 1rem;
+  }
+
+  .dataTables_filter {
+    input {
+      &:focus {
+        border-color: $secondary-color;
+        box-shadow: 0 0 5px $secondary-color;
+      }
+    }
+  }
+
+
+

@@ -1,0 +1,63 @@
+@import '../shared/styles/generic-styles';
+
+ .carousel-item {
+  height: 75vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.cartitle{
+  color: #5d5d5d;
+    font-size: 25px;
+    margin-bottom: 15px;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.price {
+  font-family: Freight,HoeflerText-Black,Times New Roman,serif;
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 1;
+  margin: 0 0 0 5px;
+}
+
+.weeklydiscount{
+  margin-top:20px;
+  margin-bottom:40px;
+  background-color:#B0B0B0;
+}
+// user
+.user-photo{
+  border-radius:50%;
+  height:100px;
+  width:100px;
+}
+// comment section
+.user-photo-comment{
+  border-radius:50%;
+  margin-right:8px;
+}
+
+.features {
+  margin-right: 10px;
+}
+.carousel-inner img {
+  width: 100%;
+  height: 100%;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+

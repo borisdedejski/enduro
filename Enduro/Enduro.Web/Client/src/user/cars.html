@@ -1,0 +1,79 @@
+<template>
+  <require from="./cars.scss"></require>
+
+  <div class="container" style="margin-top:20px; margin-bottom:700px;">
+    <div class="row">
+
+      <div class="col-2">
+      </div>
+
+      <div class="col-10">
+        <h3 class="heading" style="font-size:40px !important;">Your cars </h3>
+        <hr>
+        <br>
+        <h3 class="heading">Your Requests</h3>
+
+        <div class="row" repeat.for="carRequest of carRequests">
+          <div class="col-8">
+            <p><span class="badge badge-primary">New request</span>
+              <img src="/storage/user-profiles/${carRequest.userPaysId}.png" style="height:40px;width:40px;border-radius:50%;" />
+              Mr. ${carRequest.fullName} wants to rent your <a href="#" click.delegate="navigateToCar(carRequest.payedCarId)">${carRequest.carMake}</a> from
+              ${carRequest.rentedFrom} to ${carRequest.rentedTo}</p>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-success" style="border-radius:0px !important;" click.delegate="carAccept(carRequest.requestId)">Accept</button>
+            <button class="btn btn-danger" style="border-radius:0px !important;" click.delegate="carDecline(carRequest.requestId)">Decline</button>
+          </div>
+          <hr>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-12">
+            <h3 class="heading">Your listed cars</h3>
+            <table class="table table-hover" style="cursor:pointer">
+              <thead>
+                <tr class="table-header">
+                  <th scope="col">#</th>
+                  <th scope="col">Car Make</th>
+                  <th scope="col">Model</th>
+                </tr>
+              </thead>
+              <tbody repeat.for="car of listedCars">
+                <tr>
+                  <th>${i}</th>
+                  <td>${car.carMake}</td>
+                  <td>${car.carModel}</td>
+          </div>
+          </tr>
+          </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="heading">Cars that you have rented</h3>
+          <table class="table table-hover" style="cursor:pointer">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Car Make</th>
+                <th scope="col">Model</th>
+              </tr>
+            </thead>
+            <tbody repeat.for="car of rentedCars">
+              <tr>
+                <th scope="row">1</th>
+                <td>${car.carMake}</td>
+                <td>${car.carModel}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+</template>

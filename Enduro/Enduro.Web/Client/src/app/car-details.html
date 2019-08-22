@@ -1,0 +1,171 @@
+<template>
+  <require from="./car-details.scss"> </require>
+  <require from="../resources/elements/datepicker/datepicker"></require>
+  <require from="../resources/elements/comments/comments"></require>
+  <require from="../resources/elements/daterangepicker/daterangepicker"></require>
+  <header>
+    <!-- <div ref="carousel" class="carousel slide" data-ride="carousel" data-interval="100">
+      <ol class="carousel-indicators"></ol>
+      <div class="carousel-inner"></div>
+      <a class="carousel-control-prev" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div> -->
+    <div id="demo" class="carousel slide" data-ride="carousel">
+      <ul class="carousel-indicators">
+        <li data-target="#demo" repeat.for="i of listOfImages.length" data-slide-to.bind="i" class="${$first ? 'active': ''}"></li>
+      </ul>
+      <div class="carousel-inner">
+        <div repeat.for="image of listOfImages" class="carousel-item ${$first ? 'active': ''}">
+          <img src.bind="image" style="width:1900px;height:700px;">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+  </header>
+  <!-- body -->
+  <div class="container" style="margin-top:10px;margin-bottom:300px;">
+    <div class="row">
+      <div class="col-2">
+        <p class="heading">THE CAR</p>
+      </div>
+      <div class="col-6">
+        <p class="cartitle">${make} ${model} - ${year}</p>
+        <p>${totalTrips} trips 4 stars</p>
+        <div class="row">
+          <div class="col-6">
+            <p><i class="fas fa-gas-pump icons"></i> Gas - ${gas} </p>
+          </div>
+          <div class="col-6">
+            <p><i class="fas fa-door-open icons"></i> Doors - ${numberOfDoors} </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <p><i class="fas fa-fire icons"></i> ${horsePower} hP </p>
+          </div>
+          <div class="col-6">
+            <p><i class="fas fa-tint icons"></i> ${litersPerKm} Liters fuel at 100 km </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <!-- Date Picker -->
+        <h1><span class="price">$ ${price}</span> <small>per day </small></h1>
+        <p class="heading">Trip Start</p>
+        <div class="row">
+          <div class="col-8">
+            <datepicker rentfrom.two-way="rentFrom" changing.delegate="handleDateChangeStart($event)"></datepicker>
+          </div>
+        </div>
+        <!-- TRIP END -->
+        <p class="heading">Trip End</p>
+        <div class="row">
+          <div class="col-8">
+            <datepicker rentto.two-way="rentTo" changing.delegate="handleDateChangeEnd($event)"></datepicker>
+            <!-- <daterangepicker class="datepicker"  change.delegate="handleDateChange($event)" start.two-way="start" end.two-way="end" maxdate.two-way="maxdate"></daterangepicker> -->
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <!-- End of 1st row Description row-->
+    <div class="row">
+      <div class="col-2">
+        <p class="heading">DESCRIPTION</p>
+      </div>
+      <div class="col-6">
+        <p>
+          ${description}
+        </p>
+      </div>
+      <div class="col-4">
+        <p class="heading">Return Location</p>
+        <input type="text" class="form-control" value.bind="locationPickUp" readonly />
+        <div class="form-control weeklydiscount">
+          <p style="text-align:center;">Weekly discount savings: <span style="color:green">10%</span></p>
+        </div>
+      </div>
+    </div>
+    <!-- Features -->
+    <div class="row">
+      <div class="col-2">
+        <p class="heading">FEATURES</p>
+      </div>
+      <div class="col-6">
+        <label class="features"><i class="fas fa-exchange-alt icons"></i> Transmission - ${transmission} </label>
+        <label class="features" if.bind="gps"><i class="fas fa-map-marked-alt icons"></i> GPS </label>
+        <label class="features" if.bind="audioinput"><i class="fas fa-volume-up icons"></i> Audio input </label>
+        <label class="features" if.bind="usb"><i class="fab fa-usb icons"></i> USB input </label>
+        <label class="features" if.bind="tiptronic"><i class="fas fa-plus icons"></i> Tip Tronic </label>
+        <label class="features" if.bind="ecodrive"><i class="fas fa-leaf icons"></i> Eco drive </label>
+        <label class="features" if.bind="sportmode"><i class="fas fa-bolt icons"></i> Sport mode </label>
+        <br>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-success btn-block checkoutbtn" click.delegate="navigateToCheckout()">Go to Checkout</button>
+        <p style="text-align:center"><i>* You wont be charged yet</i></p>
+        <hr>
+      </div>
+    </div>
+    <!-- GUIDELINES -->
+    <div class="row">
+      <div class="col-2">
+        <p class="heading">GUIDELINES</p>
+      </div>
+      <div class="col-6">
+        <p>${guideLines}</p>
+      </div>
+      <div class="col-4">
+        <!-- TODO // if need -->
+        <p class="heading">INSURANCE PROVIDED VIA</p>
+        <p style="color:green;">AD OSIGURUVANJE, SKOPJE</p>
+        <hr>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <!-- <p class="heading">REVIEWS</p> -->
+      </div>
+      <div class="col-6">
+          <comments carid.bind="carId" comments.bind="comments"></comments>
+
+        <!-- <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> -
+        19 Reviews -->
+      </div>
+      <div class="col-4">
+        <p class="heading">OWNED BY</p>
+        <!-- <img class="float-right user-photo" src="${UserImage}"> -->
+        <img class="float-right user-photo" src="/storage/user-profiles/${userId}.png"/>
+        <span>${ownerFullName}</span>
+        <!-- <p> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p> -->
+      </div>
+      <hr>
+    </div>
+    <div class="row">
+      <div class="col-2">
+
+      </div>
+      <div class="col-6">
+        <!-- <comments carid.bind="carId" comments.bind="comments"></comments> -->
+      </div>
+      <div class="col-4">
+        <hr>
+        <span><i class="fab fa-facebook social"></i></span>
+        <span><i class="fab fa-twitter social"></i></span>
+        <span><i class="fab fa-instagram social"></i></span>
+      </div>
+      <hr>
+    </div>
+  </div>
+</template>

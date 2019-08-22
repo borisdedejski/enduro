@@ -1,0 +1,173 @@
+<template>
+  <require from="./checkout.scss"></require>
+
+  <div class="container" style="margin-bottom:400px;margin-top:20px;">
+    <div class="row">
+      <div class="col-2">
+      </div>
+      <div class="col-6">
+        <h3 class="heading" style="font-size:40px !important;">CHECKOUT</h3>
+        <hr>
+        <form method="post">
+          <label class="heading">Mobile number</label>
+          <div class="input-group" style="width:300px;">
+            <input type="text" class="form-control" placeholder="ex. +38954124" aria-describedby="inputGroupPrepend"
+              value.bind="mobileNumber" required>
+          </div>
+          <hr>
+          <label class="heading">Country</label>
+          <div class="input-group">
+            <select class="form-control" value.bind="selectedCountry">
+              <option model.bind="null">Choose...</option>
+              <option repeat.for="country of userLocationCountry" model.bind="country.name">
+                ${country.name}
+              </option>
+            </select>
+          </div>
+          <br>
+          <hr>
+        </form>
+        <p class="heading">Driver's license</p>
+        <!-- general -->
+        <div class="row">
+          <div class="col-4">
+            <label>Issuing Country</label>
+            <div class="input-group">
+              <select class="form-control" value.bind="selectedDriverLicenseCountry">
+                <option model.bind="null">Choose...</option>
+                <option repeat.for="country of driverLicenseCountry" model.bind="country.name">
+                  ${country.name}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-4">
+            <label>State</label>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="ex. Strumica" aria-describedby="inputGroupPrepend"
+              value.bind="state" required>
+            </div>
+          </div>
+          <div class="col-4">
+            <label>License number</label>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="ex. A12312" value.bind="licenseNumber"/>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!-- more info -->
+        <div class="row">
+          <div class="col-7">
+            <label>Valid until</label>
+            <div class="input-group">
+              <select class="form-control" value.bind="selectedValidMonth">
+                <option model.bind="null">Choose...</option>
+                <option repeat.for="month of validMonths" model.bind="month.name">
+                  ${month.name}
+                </option>
+              </select>
+              <select class="form-control" value.bind="selectedValidYear">
+                <option model.bind="null">Choose...</option>
+                <option repeat.for="year of validYears" model.bind="year.name">
+                  ${year.name}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-3">
+          </div>
+          <div class="col-6">
+          </div>
+          <br>
+        </div>
+        <!--  -->
+        <div class="row">
+          <div class="col-12">
+            <label>Full Name</label>
+            <div class="input-group">
+              <input type="text" class="form-control" value.bind="currentUserFullName" readonly/>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!--  -->
+        <div class="row">
+          <div class="col-6">
+            <label>Date of birth</label>
+            <div class="input-group">
+              <select class="form-control" value.bind="selectedBirthDay">
+                <option model.bind="null">Choose...</option>
+                <option repeat.for="day of birthDays" model.bind="day.name">
+                  ${day.name}
+                </option>
+              </select>
+              <select class="form-control" value.bind="selectedBirthMonth">
+                <option model.bind="null">Choose...</option>
+                <option repeat.for="month of birthMonth" model.bind="month.name">
+                  ${month.name}
+                </option>
+              </select>
+              <select class="form-control" value.bind="selectedBirthYear">
+                <option model.bind="null">Choose...</option>
+                <option repeat.for="year of birthYear" model.bind="year.name">
+                  ${year.name}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-3">
+          </div>
+          <div class="col-6">
+          </div>
+          <br>
+        </div>
+        <hr>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <img class="card-img-top" src="${carProfilePicture}" alt="Card image cap">
+
+          <div class="card-body">
+            <img class="card-img-top float-right" src="${userPicture}" alt="Card image cap" style="height:80px;width:80px;border-radius:50px;">
+            <h5 class="card-title">${ownerFullName}'s ${carMake} ${carModel} - ${carYear}</h5>
+            <p class="card-text">20+ trips - <span style="border: 1px solid black;"> Bussiness
+                class </span></p>
+            <p><i class="fas fa-star"></i></p>
+            <label class="heading">From <i class="fas fa-caret-square-right"></i> </label>
+            <p>${rentFrom}</p>
+            <label class="heading">To <i class="fas fa-caret-square-left"></i></label>
+            <p>${rentTo} </p>
+            <hr>
+            <label class="heading">Meeting location</label>
+            <p>${locationPickup} <i class="fas fa-map-marker-alt float-right"></i></p>
+            <hr>
+            <div>
+              <div class="row">
+                <div class="col-6">
+                  Trip per day price:
+                </div>
+                <div class="col-6">
+                  $ ${tripPerDay}
+                </div>
+              </div>
+              <div class="row total-price">
+                <div class="col-6">
+                  Trip total price:
+                </div>
+                <div class="col-6">
+                  <p style="color:green;">$${totalPrice}</p>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <button class="btn btn-success btn-block checkoutbtn" click.delegate="confirmPay()">Pay</button>
+            <p style="text-align:center"><i>* You wont be charged until ${ownerFullName}'s (the owner) accepts you, you
+                will
+                receive call or message soon after your confirmation</i></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

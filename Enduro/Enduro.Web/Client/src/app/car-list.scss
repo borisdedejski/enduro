@@ -1,0 +1,52 @@
+@import '../shared/styles/generic-styles';
+
+.car-list-links{
+  color: $primary-color;
+}
+.car-list-links:hover{
+  color: $primary-color;
+}
+.card-body{
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0;
+}
+.card-price{
+  background-color: white;
+  top:-40px;
+  left:200px;
+  position:relative;
+  width: 90px;
+  height:30px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+.page-item.active .page-link{
+  background-color: $primary-color;
+  border-color: $primary-color;
+  color:white;
+}
+// @media (min-width: 576px) {
+//     .card-columns {
+//         column-count: 2;
+//     }
+// }
+
+// @media (min-width: 768px) {
+//     .card-columns {
+//         column-count: 3;
+//     }
+// }
+
+// @media (min-width: 992px) {
+//     .card-columns {
+//         column-count: 3;
+//     }
+// }
+
+// @media (min-width: 1200px) {
+//     .card-columns {
+//         column-count: 4;
+//         width: 70%;
+//     }
+// }

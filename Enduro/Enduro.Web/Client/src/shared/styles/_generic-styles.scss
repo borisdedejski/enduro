@@ -1,0 +1,100 @@
+//Colors
+$primary-color: #ff0066;
+$secondary-color: #202020;
+// for the footer
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+//Buttons
+.checkoutbtn{
+  border-radius:0px;
+}
+.btn-primary{
+  background-color:$primary-color ;
+  border-color:$secondary-color;
+}
+.btn-primary:hover{
+background-color: $secondary-color ;
+border-color: white;
+}
+.btn:focus{
+  outline: none !important;
+}
+.btn-primary:active{
+  background-color:darken($color: $secondary-color, $amount: 20%) !important;
+  box-shadow: none;
+  outline: none;
+}
+.btn-primary:active:focus{
+  background-color:darken($color: $secondary-color, $amount: 20%) !important;
+  box-shadow: none;
+  outline: none;
+}
+.btn-secondary{
+  color:black;
+  background-color: white;
+  border-color: $primary-color;
+}
+.btn-secondary:hover{
+  background-color: $secondary-color;
+  border-color: white;
+}
+
+//Icons
+.icons{
+  font-size: 25px;
+  color: $primary-color;
+}
+.social{
+  display: inline-block;
+  border-radius: 50px;
+  box-shadow: 0px 0px 2px $secondary-color;
+  padding: 0.5em 0.6em;
+  font-size:20px;
+  margin-right: 3px;  
+  cursor: pointer;
+}
+.social:hover{
+  border-radius: 50px;
+  box-shadow: 0px 0px 2px $secondary-color;
+  padding: 0.5em 0.6em;
+  font-size:20px;
+  color: $primary-color;
+  cursor: pointer;
+}
+
+//Heading title
+.heading{
+  color: #5d5d5d;
+  font-size: 13px;
+  margin-bottom: 15px;
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.cartitle{
+  color: #5d5d5d;
+    font-size: 25px;
+    margin-bottom: 15px;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+//fonts
+body,p,h3 {
+  font-family: BasisGrotesque,Avenir,Helvetica Neue,Helvetica,sans-serif
+}
+
+.price {
+  font-family: Freight,HoeflerText-Black,Times New Roman,serif;
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 1;
+  margin: 0 0 0 5px;
+}
+//select forms 
+select{
+  border-radius:0px;
+}

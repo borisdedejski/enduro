@@ -1,0 +1,12 @@
+<template>
+  <require from="../resources/elements/layout/navbar"></require>
+  <require from="../resources/elements/layout/foot"></require>
+  <loading-indicator loading.bind="router.isNavigating || api.isRequesting"></loading-indicator>
+
+  <navbar></navbar>
+  <div>
+    <slot></slot>
+  </div>
+
+  <foot></foot>
+</template>

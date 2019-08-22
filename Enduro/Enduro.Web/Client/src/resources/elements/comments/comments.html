@@ -1,0 +1,43 @@
+<template>
+  <require from="./comments.scss"></require>
+
+  <label class="heading">Add your comment</label>
+  <div class="input-group">
+    <textarea ref="commentsection" class="form-control" rows="3" aria-label="With textarea" value.bind="comment"></textarea>
+    <div class="input-group-prepend">
+      <button class="input-group btn btn-primary" click.delegate="addComment()">Send</button>
+    </div>
+  </div>
+  <br>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <span><i class="fas fa-comments icons"></i></span> 
+        Recent Comments
+      </h3>
+    </div>
+    <div class="panel-body">
+      <ul class="media-list" repeat.for="comment of comments">
+        <li class="media">
+          <div class="media-left ">
+            <!-- <img src="${userProfilePicture(comment.userId)}" class="img-circle user-photo-comment"> -->
+            <img src="/storage/user-profiles/${comment.userId}.png" class="img-circle user-photo-comment">
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">
+              ${comment.fullName}
+              <br>
+              <span click.delegate="removeComment(comment.commentId)" class="fas fa-times float-right" style="cursor:pointer;font-size:15px;"></span>
+              <!-- <small style="font-size:15px;"> 1 seconds ago </small> -->
+            </h4>
+            <p>
+              ${comment.comment}
+            </p>
+            <hr>
+          </div>
+        </li>
+      </ul>
+      <a href="#" class="btn btn-primary btn-block">More Comment »</a>
+    </div>
+  </div>
+</template>

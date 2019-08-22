@@ -1,0 +1,44 @@
+<template class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog">
+  <require from="../prompts.scss"></require>
+
+  <div class="modal-dialog" role="document" style="width: 30rem;" submit.delegate="moreFiltersPrompt()">
+    <form class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">More filters</h4>
+        <button click.trigger="controller.cancel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div submit.trigger="addUser()" submit.trigger="controller.ok()" class="modal-body mx-3 mb-1">
+        <label class="heading">Vechile brand</label>
+        <select class="form-control" value.bind="selectedCarMake">
+          <option model.bind="null">Choose...</option>
+          <option repeat.for="make of vechileBrands" model.bind="make.name">
+            ${make.name}
+          </option>
+        </select>
+      </div>
+      <div submit.trigger="addUser()" submit.trigger="controller.ok()" class="modal-body mx-3 mb-1">
+        <br>
+        <label class="heading">Number of seats</label>
+        <select class="form-control" value.bind="selectedDoors">
+          <option model.bind="null">Choose...</option>
+          <option repeat.for="door of doors" model.bind="door.name">
+            ${door.name}
+          </option>
+        </select>
+        <!-- <label class="heading">Transmission</label>
+        <select class="form-control" id="exampleFormControlSelect1" style="border-radius:0px;">
+          <option>Manual</option>
+          <option>Automatic</option>
+        </select> -->
+      </div>
+
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="submit" class="btn btn-secondary" click.trigger="controller.cancel()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Ok</button>
+      </div>
+    </form>
+  </div>
+
+</template>

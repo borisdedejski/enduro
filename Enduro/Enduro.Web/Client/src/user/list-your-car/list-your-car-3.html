@@ -1,0 +1,87 @@
+<template>
+  <require from="./list-your-car-3.scss"></require>
+  <require from="../../resources/value-converters/BlobToUrlValueConverter"></require>
+
+  <div class="container" style="margin-top:50px; margin-bottom:700px;">
+    <div class="col-12 offset-2">
+      <h3 class="heading" style="font-size:40px !important;">List your car</h3>
+      <hr>
+      <div class="row">
+        <!-- User / Car Info -->
+        <!-- trying -->
+
+        <div class="col-4">
+          <p><label class="heading">Full Name: </label> ${fullName}</p>
+          <p><label class="heading">Country: </label> ${locationCountry}</p>
+          <p><label class="heading">Address for pickup: </label> ${addressForPickUp}</p>
+          <p><label class="heading">Driver license Number : </label> ${driverLicenseNo}</p>
+          <p><label class="heading">Mobile : </label> ${mobileNumber}</p>
+          <p><label class="heading">Car Make : </label> ${carMake} </p>
+          <p><label class="heading">Car Model : </label> ${carModel}</p>
+          <p><label class="heading">Car Year : </label> ${carYear}</p>
+          <p><label class="heading">Rent the car from: </label> ${rentFrom} - ${rentTo} </p>
+        </div>
+
+        <!-- Car info & images -->
+        <div class="col-4">
+          <p><label class="heading">Car class: </label> ${carClass} </p>
+          <p><label class="heading">Gas: </label> ${carGas} </p>
+          <p><label class="heading">Transmision: </label> ${selectedTransmission} </p>
+          <p><label class="heading">Doors: </label> ${selectedDoors} </p>
+          <p><label class="heading">Horspower: </label>${carHorsePower}  ${selectedHorsePower}</p>
+          <p><label class="heading">Liters fuel per 100km: </label> ${carLiters}</p>
+          <p><label class="heading">Feature: </label>
+            <span if.bind="usb">USB</span>
+            <span if.bind="audioinput">Audio Input</span>
+            <span if.bind="gps">GPS</span>
+            <span if.bind="tiptronic">Tip-Tronic</span>
+            <span if.bind="ecodrive">EcoDrive</span>
+            <span if.bind="sportmode">Sport Mode</span>
+          </p>
+          <p><label class="heading">Car images: </label> </p>
+          <div class="row">
+            <div class="col-12">
+              <form submit.delegate="upload()">
+                <input type="file" id="myFile" accept="image/*" files.bind="selectedFiles">
+                <div class="mt-3">
+                  <button type="submit" if.bind="selectedFiles.length > 0" class="btn btn-primary">Upload</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-6" repeat.for="image of listOfImages">
+              <div class="thumbnail">
+                <span click.delegate="deleteImage(image)" class="fas fa-times float-right" style="cursor:pointer"></span>
+                <img src.bind="image[0]" style="height:150px;width:150px;cursor:pointer">
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+        <!-- description guideline -->
+        <div class="col-4">
+          <p class="float-right">Step 3 of 3</p>
+          <label class="heading">Description: </label><textarea class="form-control" value="${carDescription}" readonly></textarea>
+          <label class="heading">Guideline: </label><textarea class="form-control" value="${carGuideline}" readonly></textarea>
+          <br>
+          <p><label class="heading">Insurance company: </label> ${carInsurance}</p>
+          <div class="row" style="margin-bottom:102px;">
+            <div class="col-6">
+              <button class="btn btn-secondary form-control" click.delegate="navigateToStep2()"> <i class="fas fa-angle-left"></i>
+                Previous</button>
+            </div>
+            <div class="col-6">
+              <button class="btn btn-success form-control" click.delegate="confirmList()">Confirm </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      Step 3 of 3
+    </div>
+  </div>
+</template>

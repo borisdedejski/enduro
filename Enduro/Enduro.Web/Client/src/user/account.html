@@ -1,0 +1,144 @@
+<template>
+  <require from="../resources/elements/datepicker/datepicker"></require>
+  <require from="../resources/value-converters/BlobToUrlValueConverter"></require>
+  <require from="../resources/value-converters/FileListToArrayValueConverter"></require>
+
+  <div class="container-fluid mt-5 mb-5 col-lg-8 col-sm-10" style="margin-left:250px;margin-top:50px;">
+    <form submit.delegate="upload()">
+      <div class="form-group row">
+        <label for="inputProfilePicture" class="col-sm-3 col-form-label text-right">Profile Picture</label>
+        <div class="col-sm-8">
+          <img ref="userAvatar" src.bind="currentUserAvatar" alt="Alternate text for profile picture" class="rounder mx-auto d-block float-left"
+            style="height: 150px; width: 150px">
+          <div class="custom-file file-upload mt-1">
+            <input class="custom-file-input" type="file" accept="image/*" files.bind="selectedFiles">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+            
+            <ul>
+              <li repeat.for="file of selectedFiles | fileListToArray">
+                <h6>${file.name}: ${file.type} ${file.size / 1000} kb</h6>
+                <img src.bind="file | blobToUrl" style="width:100px;height:100px;">
+                <img> Last Modified: ${file.lastModifiedDate}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-11">
+          <button type="submit" class="btn btn-primary float-right" if.bind="selectedFiles.length > 0">Upload</button>
+        </div>
+      </div>
+    </form>
+
+    <span class="section-label">Details</span>
+    <hr />
+    <form submit.delegate="changeDetails()">
+
+      <div class="form-group row">
+        <label for="inputFullName" class="col-sm-3 col-form-label text-lg-right">Full Name</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" value.bind="changeDetailsRequest.fullName" placeholder="Full Name">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputLocation" class="col-sm-3 col-form-label text-lg-right">Location</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" value.bind="changeDetailsRequest.location" placeholder="Location">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label text-lg-right" for="inlineFormCustomSelect">Gender</label>
+        <div class="col-sm-8">
+          <select class="form-control" value.bind="changeDetailsRequest.gender">
+            <option repeat.for="gender of genders" value.bind="gender">${gender}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label text-lg-right" for="inputBirthday">Birthday</label>
+
+        <div class="col-sm-4">
+          <datepicker></datepicker>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-11">
+          <button type="submit" class="btn btn-primary float-right" if.bind="userDetailsNotEmpty">Submit</button>
+        </div>
+      </div>
+
+    </form>
+
+    <span class="section-label">Change Email</span>
+    <hr />
+
+    <form>
+      <div class="form-group row">
+        <label for="inputNewEmail" class="col-sm-3 col-form-label text-lg-right">Email</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" value.bind="changeEmailRequest.email" placeholder="email@email.com">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPassword" class="col-sm-3 col-form-label text-lg-right">Password</label>
+        <div class="col-sm-8">
+          <input type="password" class="form-control" value.bind="changeEmailRequest.password">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-11">
+          <button type="submit" class="btn btn-primary float-right" show.bind="emailAndPasswordNotEmpty">Change Email</button>
+        </div>
+      </div>
+    </form>
+
+    <span class="section-label">Change Password</span>
+    <hr />
+
+    <form>
+      <div class="form-group row">
+        <label for="inputOldPassword" class="col-sm-3 col-form-label text-lg-right">Old Password</label>
+        <div class="col-sm-8">
+          <input type="password" class="form-control" value.bind="changePasswordRequest.oldPassword">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputNewPassword" class="col-sm-3 col-form-label text-lg-right">New Password</label>
+        <div class="col-sm-8">
+          <input type="password" class="form-control" value.bind="changePasswordRequest.newPassword">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputRepeatNewPassword" class="col-sm-3 col-form-label text-lg-right">Repeat Password</label>
+        <div class="col-sm-8">
+          <input type="password" class="form-control" value.bind="changePasswordRequest.confirmNewPassword">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-11">
+          <button type="submit" class="btn btn-primary float-right" if.bind="passwordsNotEmpty">Change Password</button>
+        </div>
+      </div>
+
+    </form>
+
+
+    <div class="text-center">
+      <h2 class="mt-4">Download Your Data </h2>
+      <small>Download a copy of your Enduro data.</small>
+      <div>
+        <button class="btn btn-lg btn-primary mt-2">
+          <i class="fas fa-download export-icon"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
