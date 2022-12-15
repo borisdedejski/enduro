@@ -44,7 +44,7 @@
     "@types/node": "^10.11.6",
     "@types/webpack": "^4.4.15",
     "aspnet-webpack": "^3.0.0",
-    "aurelia-cli": "^1.0.0-beta.4",
+    "aurelia-cli": "^1.3.1",
     "aurelia-testing": "^1.0.0",
     "aurelia-tools": "^2.0.0",
     "aurelia-webpack-plugin": "^3.0.0",
